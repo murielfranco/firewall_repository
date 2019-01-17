@@ -1,0 +1,8 @@
+{
+ "FENDE": {
+	"permissions": {
+		"see_source_code": "all",
+		"contract_VNF": "UFRGS;UFSM;UFPR"
+			}
+      	  }
+}

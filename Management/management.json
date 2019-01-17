@@ -1,0 +1,23 @@
+{
+	"lifecycle_events": [{
+			"event": "INSTALL",
+			"lifecycle_events": [
+				"Scripts/install.sh"
+			]
+		},
+		{
+			"event": "FENDE",
+			"lifecycle_events": [
+				"Scripts/start.sh"
+			]
+		},
+		{
+			"event": "STOP",
+			"lifecycle_events": [
+				"Scripts/stop.sh"
+			]
+		}
+	],
+	
+    "log_file": "/var/log/syslog"
+}
