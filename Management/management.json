@@ -6,7 +6,7 @@
 			]
 		},
 		{
-			"event": "FENDE",
+			"event": "START",
 			"lifecycle_events": [
 				"Scripts/start.sh"
 			]
@@ -18,6 +18,53 @@
 			]
 		}
 	],
-	
-    "log_file": "/var/log/syslog"
+
+	"log_file": "/var/log/syslog",
+
+	"VNF_api": [{
+		"run_file": "run_api.sh",
+		"stop_file": "stop_api.sh",
+		"port": 9999,
+		"authenticationParameters": [
+			"username": "fende",
+			"password": "fende"
+		],
+		"calls": [{
+			"dropInput": [{
+				"call": "/drop/input/",
+				"parameters": [
+					"input_address",
+					"output_address"
+				]
+			}],
+			"deleteInput": [{
+				"call": "/delete/input/",
+				"parameters": [
+					"input_address",
+					"output_address"
+				]
+			}],
+			"acceptPort": [{
+				"call": "/accept/port/",
+				"parameters": [
+					"destination_port",
+					"protocol"
+				]
+			}],
+			"listRules": [{
+				"call": "/list",
+				"parameters": [
+					""
+				]
+			}],
+			"cleanRules": [{
+				"call": "/clean",
+				"parameters": [
+					"destination_port",
+					"protocol"
+				]
+			}]
+		}]
+	}]
+
 }

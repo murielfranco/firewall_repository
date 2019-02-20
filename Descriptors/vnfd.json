@@ -1,12 +1,13 @@
 {
   "vnfd": {
-    "name": "Ubuntu-VNFD",
-    "description": "Ubuntu template",
+    "name": "Firewall",
+    "description": "IPtables-based Firewall",
     "service_types": [
       {
-        "service_type": "vnfd"
+        "service_type": "security"
       }
     ],
+    
     "attributes": {
       "vnfd": {
         "tosca_definitions_version": "tosca_simple_profile_for_nfv_1_0_0",
@@ -21,22 +22,41 @@
                 "nfv_compute": {
                   "properties": {
                     "num_cpus": 1,
-                    "mem_size": "512 MB",
+                    "mem_size": "4 GB",
                     "disk_size": "5 GB"
                   }
                 }
               },
               "properties": {
-                "image": "ubuntu-18.10",
+                "image": "ubuntu-vm",
                 "availability_zone": "nova",
                 "mgmt_driver": "noop"
               }
             },
-            "CP_mgmt": {
+            "CP21": {
               "type": "tosca.nodes.nfv.CP.Tacker",
               "properties": {
                 "order": 0,
                 "management": true,
+                "anti_spoofing_protection": false
+              },
+              "requirements": [
+                {
+                  "virtualLink": {
+                    "node": "VL21"
+                  }
+                },
+                {
+                  "virtualBinding": {
+                    "node": "VDU1"
+                  }
+                }
+              ]
+            },
+            "CP22": {
+              "type": "tosca.nodes.nfv.CP.Tacker",
+              "properties": {
+                "order": 1,
                 "anti_spoofing_protection": false
               },
               "requirements": [
@@ -52,11 +72,10 @@
                 }
               ]
             },
-            "CP_traffic": {
+            "CP23": {
               "type": "tosca.nodes.nfv.CP.Tacker",
               "properties": {
-                "order": 1,
-                "management": false,
+                "order": 2,
                 "anti_spoofing_protection": false
               },
               "requirements": [
@@ -72,18 +91,25 @@
                 }
               ]
             },
-            "VL22": {
+            "VL21": {
               "type": "tosca.nodes.nfv.VL",
               "properties": {
                 "vendor": "Tacker",
                 "network_name": "net_mgmt"
               }
             },
+            "VL22": {
+              "type": "tosca.nodes.nfv.VL",
+              "properties": {
+                "vendor": "Tacker",
+                "network_name": "net0"
+              }
+            },
             "VL23": {
               "type": "tosca.nodes.nfv.VL",
               "properties": {
                 "vendor": "Tacker",
-                "network_name": "private"
+                "network_name": "net1"
               }
             }
           }
@@ -92,4 +118,3 @@
     }
   }
 }
-
