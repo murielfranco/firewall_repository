@@ -37,4 +37,4 @@ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 echo "Firewall was configured with sucess."
 echo "Firewall started."
 
-sudo ./run_api.sh # Run API
+cd /Management/API/Scripts && sudo ./run_api.sh # Run API

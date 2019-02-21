@@ -22,8 +22,8 @@
 	"log_file": "/var/log/syslog",
 
 	"VNF_api": [{
-		"run_file": "run_api.sh",
-		"stop_file": "stop_api.sh",
+		"run_file": "API/Scripts/run_api.sh",
+		"stop_file": "API/Scripts/stop_api.sh",
 		"port": 9999,
 		"authenticationParameters": [
 			"username": "fende",
