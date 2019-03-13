@@ -25,10 +25,10 @@
 		"run_file": "API/Scripts/run_api.sh",
 		"stop_file": "API/Scripts/stop_api.sh",
 		"port": 9999,
-		"authenticationParameters": [
+		"authenticationParameters": {
 			"username": "fende",
 			"password": "fende"
-		],
+		},
 		"calls": [{
 			"dropInput": [{
 				"call": "/drop/input/",
