@@ -30,40 +30,40 @@
 			"password": "fende"
 		},
 		"calls": [{
-			"dropInput": [{
+			"dropInput": {
 				"call": "/drop/input/",
 				"parameters": [
 					"input_address",
 					"output_address"
 				]
-			}],
-			"deleteInput": [{
+			},
+			"deleteInput": {
 				"call": "/delete/input/",
 				"parameters": [
 					"input_address",
 					"output_address"
 				]
-			}],
-			"acceptPort": [{
+			},
+			"acceptPort": {
 				"call": "/accept/port/",
 				"parameters": [
 					"destination_port",
 					"protocol"
 				]
-			}],
-			"listRules": [{
+			},
+			"listRules": {
 				"call": "/list",
 				"parameters": [
 					""
 				]
-			}],
-			"cleanRules": [{
+			},
+			"cleanRules": {
 				"call": "/clean",
 				"parameters": [
 					"destination_port",
 					"protocol"
 				]
-			}]
+			}
 		}]
 	}]
 
