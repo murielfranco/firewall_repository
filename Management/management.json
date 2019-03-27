@@ -1,70 +1,71 @@
 {
-	"lifecycle_events": [{
-			"event": "INSTALL",
-			"lifecycle_events": [
-				"Scripts/install.sh"
-			]
-		},
-		{
-			"event": "START",
-			"lifecycle_events": [
-				"Scripts/start.sh"
-			]
-		},
-		{
-			"event": "STOP",
-			"lifecycle_events": [
-				"Scripts/stop.sh"
-			]
-		}
-	],
-
-	"log_file": "/var/log/syslog",
-
-	"VNF_api": [{
-		"run_file": "API/Scripts/run_api.sh",
-		"stop_file": "API/Scripts/stop_api.sh",
-		"port": 9999,
-		"authenticationParameters": {
-			"username": "fende",
-			"password": "fende"
-		},
-		"calls": [{
-			"dropInput": {
-				"call": "/drop/input/",
-				"parameters": [
-					"input_address",
-					"output_address"
-				]
-			},
-			"deleteInput": {
-				"call": "/delete/input/",
-				"parameters": [
-					"input_address",
-					"output_address"
-				]
-			},
-			"acceptPort": {
-				"call": "/accept/port/",
-				"parameters": [
-					"destination_port",
-					"protocol"
-				]
-			},
-			"listRules": {
-				"call": "/list",
-				"parameters": [
-					""
-				]
-			},
-			"cleanRules": {
-				"call": "/clean",
-				"parameters": [
-					"destination_port",
-					"protocol"
-				]
-			}
-		}]
-	}]
-
+  "lifecycle_events": [
+    {
+      "event": "INSTALL",
+      "lifecycle_events": [
+        "Scripts/install.sh"
+      ]
+    },
+    {
+      "event": "START",
+      "lifecycle_events": [
+        "Scripts/start.sh"
+      ]
+    },
+    {
+      "event": "STOP",
+      "lifecycle_events": [
+        "Scripts/stop.sh"
+      ]
+    }
+  ],
+  "log_file": "/var/log/syslog",
+  "VNF_api": {
+    "run_file": "API/Scripts/run_api.sh",
+    "stop_file": "API/Scripts/stop_api.sh",
+    "port": 9999,
+    "authenticationParameters": {
+      "username": "fende",
+      "password": "fende"
+    },
+    "calls": [
+      {
+        "method": "dropInput",
+        "call": "/drop/input/",
+        "parameters": [
+          "input_address",
+          "output_address"
+        ]
+      },
+      {
+        "method": "deleteInput",
+        "call": "/delete/input/",
+        "parameters": [
+          "input_address",
+          "output_address"
+        ]
+      },
+      {
+        "method": "acceptPort",
+        "call": "/accept/port/",
+        "parameters": [
+          "destination_port",
+          "protocol"
+        ]
+      },
+      {
+        "method": "listRules",
+        "call": "/list",
+        "parameters": []
+      },
+      {
+        "method": "cleanRules",
+        "call": "/clean",
+        "parameters": [
+          "destination_port",
+          "protocol"
+        ]
+      }
+    ]
+  }
 }
