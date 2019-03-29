@@ -13,9 +13,6 @@ iptables -A INPUT -j LOG
 echo "Avoid DoS attacks"
 iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT
 
-echo "Block pings"
-iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
-
 echo "Security Policies"
 echo 0 > /proc/sys/net/ipv4/conf/all/accept_source_route # Avoid fake packets
 echo 0 > /proc/sys/net/ipv4/conf/all/accept_redirects # Perigo de descobrimento de rotas de roteamento (desativar em roteador)
@@ -30,11 +27,11 @@ iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --upd
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p udp --dport 22 -j ACCEPT
 
+echo "Allow Web Server on port 8000"
+iptables -A INPUT -p tcp --dport 8500 -j ACCEPT
 
-echo "Allowing Apache"
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+echo "Block Web Server on port 8001"
+iptables -A INPUT -p tcp --dport 8501 -j DROP
 
-echo "Firewall was configured with sucess."
+echo "Firewall was successfully configured."
 echo "Firewall started."
-
-cd /Management/API/Scripts && sudo ./run_api.sh & # Run API
