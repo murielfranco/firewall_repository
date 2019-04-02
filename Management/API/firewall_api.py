@@ -22,7 +22,7 @@ class FENDEAuth(BasicAuth):
                password == 'fende'
 
 
-app = Eve(auth=FENDEAuth)
+app = Eve()
 
 @app.route('/drop/input/<input_addr>/<output_addr>')
 @requires_auth(FENDEAuth)

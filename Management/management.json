@@ -61,9 +61,7 @@
       {
         "method": "cleanRules",
         "call": "/clean",
-        "parameters": [
-          "destination_port",
-          "protocol"
+        "parameters": []
         ]
       }
     ]
