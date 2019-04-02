@@ -27,11 +27,11 @@ iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --upd
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p udp --dport 22 -j ACCEPT
 
-echo "Allow Web Server on port 8000"
-iptables -A INPUT -p tcp --dport 8500 -j ACCEPT
+echo "Allow Web Server on port 8500"
+iptables -A FORWARD -p tcp --dport 8500 -j ACCEPT
 
-echo "Block Web Server on port 8001"
-iptables -A INPUT -p tcp --dport 8501 -j DROP
+echo "Block Web Server on port 8501"
+iptables -A FORWARD -p tcp --dport 8501 -j DROP
 
 echo "Firewall was successfully configured."
 echo "Firewall started."
