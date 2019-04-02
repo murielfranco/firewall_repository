@@ -35,3 +35,5 @@ iptables -A FORWARD -p tcp --dport 8501 -j DROP
 
 echo "Firewall was successfully configured."
 echo "Firewall started."
+
+cd /Management/API/Scripts && sudo ./run_api.sh & # Run API
