@@ -57,7 +57,7 @@ def cleanRules():
 @requires_auth(FENDEAuth)
 def listRules():
     response = os.popen("iptables -L -v -n").read() # Return all rules
-    content = response.replace('\n','$')
+    content = response.replace('\n','<br>')
     return content
 
 
