@@ -34,6 +34,9 @@ iptables -A FORWARD -p tcp --dport 8500 -j ACCEPT
 echo "Block Web Server on port 8501"
 iptables -A FORWARD -p tcp --dport 8501 -j DROP
 
+echo "Allow Squid proxy"
+iptables -A FORWARD -p tcp --dport 3128 -j ACCEPT
+
 echo "Firewall was successfully configured."
 echo "Firewall started."
 
