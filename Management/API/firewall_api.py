@@ -56,8 +56,9 @@ def cleanRules():
 @app.route('/list')
 @requires_auth(FENDEAuth)
 def listRules():
-    content = os.popen("iptables -L -v -n").read() # Return all rules
-    return jsonify({'rules': content})
+    response = os.popen("iptables -L -v -n").read() # Return all rules
+    content = response.replace('\n','$')
+    return content
 
 
 if __name__=='__main__':
