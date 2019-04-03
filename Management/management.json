@@ -62,7 +62,6 @@
         "method": "cleanRules",
         "call": "/clean",
         "parameters": []
-        ]
       }
     ]
   }
