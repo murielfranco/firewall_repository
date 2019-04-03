@@ -24,6 +24,11 @@ class FENDEAuth(BasicAuth):
 
 app = Eve()
 
+@app.after_request
+def after_request(response):
+    response.headers.set('Access-Control-Allow-Original', '*')
+    return response
+
 @app.route('/drop/input/<input_addr>/<output_addr>')
 @requires_auth(FENDEAuth)
 def dropInput(input_addr, output_addr):
