@@ -38,7 +38,7 @@ def deleteInput(input_addr, output_addr):
 
 @app.route('/accept/port/<dport>/<protocol>')
 @requires_auth(FENDEAuth)
-def acceptPort(input_addr, output_addr):
+def acceptPort(dport, protocol):
     status = os.system("iptables -A INPUT -p %s --dport %s -j ACCEPT" % (protocol, dport))
     return jsonify({'success': verify_status(status)})
 
