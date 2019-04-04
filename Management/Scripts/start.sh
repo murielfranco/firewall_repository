@@ -14,6 +14,7 @@ echo "Avoid DoS attacks"
 iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT
 
 echo "Security Policies"
+sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
 echo 0 > /proc/sys/net/ipv4/conf/all/accept_source_route # Avoid fake packets
 echo 0 > /proc/sys/net/ipv4/conf/all/accept_redirects # Perigo de descobrimento de rotas de roteamento (desativar em roteador)
 echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # Reduce DoS risks
@@ -33,7 +34,10 @@ iptables -A FORWARD -p tcp --dport 8500 -j ACCEPT
 echo "Block Web Server on port 8501"
 iptables -A FORWARD -p tcp --dport 8501 -j DROP
 
+echo "Allow Squid proxy"
+iptables -A FORWARD -p tcp --dport 3128 -j ACCEPT
+
 echo "Firewall was successfully configured."
 echo "Firewall started."
 
-cd /Management/API/Scripts && sudo ./run_api.sh & # Run API
+sudo /home/fende/Management/API/firewall_api.py & # Run API

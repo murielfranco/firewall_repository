@@ -24,6 +24,11 @@ class FENDEAuth(BasicAuth):
 
 app = Eve()
 
+@app.after_request
+def after_request(response):
+    response.headers.set('Access-Control-Allow-Original', '*')
+    return response
+
 @app.route('/drop/input/<input_addr>/<output_addr>')
 @requires_auth(FENDEAuth)
 def dropInput(input_addr, output_addr):
@@ -51,8 +56,9 @@ def cleanRules():
 @app.route('/list')
 @requires_auth(FENDEAuth)
 def listRules():
-    content = os.popen("iptables -L -v -n").read() # Return all rules
-    return jsonify({'rules': content})
+    response = os.popen("iptables -L -v -n").read() # Return all rules
+    content = response.replace('\n','<br>')
+    return content
 
 
 if __name__=='__main__':
