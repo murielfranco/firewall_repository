@@ -31,7 +31,9 @@
     "calls": [
       {
         "method": "dropInput",
+        "methodType": "POST",
         "call": "/drop/input/",
+        "description":"Add a rule to drop all packets from source X to Y",
         "parameters": [
           "input_address",
           "output_address"
@@ -39,7 +41,9 @@
       },
       {
         "method": "deleteInput",
+        "methodType": "POST",
         "call": "/delete/input/",
+        "description":"Remove a rule that drops all packets from source X to Y",
         "parameters": [
           "input_address",
           "output_address"
@@ -47,7 +51,9 @@
       },
       {
         "method": "acceptPort",
+        "methodType": "POST",
         "call": "/accept/port/",
+        "description":"Open an specific port and protocol",
         "parameters": [
           "destination_port",
           "protocol"
@@ -55,12 +61,16 @@
       },
       {
         "method": "listRules",
+        "methodType": "GET",
         "call": "/list",
+        "description":"Return the list of active rules",
         "parameters": []
       },
       {
         "method": "cleanRules",
+        "methodType": "POST",
         "call": "/clean",
+        "description":"Clear the firewall's rules",
         "parameters": []
       }
     ]
